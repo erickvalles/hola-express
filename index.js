@@ -11,7 +11,7 @@ app.engine('handlebars', engine())
 
 app.set('view engine', 'handlebars')
 app.set('views','./views')
-
+app.disable('x-powered-by')
 app.use(express.static('public'))
 
 
@@ -29,6 +29,30 @@ app.get('/graciosas',(req,res)=>{
 app.get('/peliculas',(req,res)=>{
     res.render('about', {frase:getFrasePelicula()})
 })
+
+app.get('/headers', (req,res)=>{
+    res.type('text/plain')
+    const headers = Object.entries(req.headers)
+        .map(([key,value])=>`${key}:${value}`)
+    res.send(headers.join('\n'))
+})
+
+app.get('/bloques',(req,res)=>{
+    let datos = {
+        alumnos:[
+            {ap:"Guerrero",am:"Muñoz",nombre:"Erick",codigo:1235},
+            {ap:"Guerrero",am:"Muñoz",nombre:"Jorge",codigo:1236},
+            {ap:"Álvarez Tostado",am:"Martinez",nombre:"Erendira",codigo:1237},
+        ],
+        solicitudes:[
+            {codigo:1235,detalle:"Quiero dar de baja una materia"}
+        ]
+        
+    }
+
+    res.render('solicitudes', {datos:datos})
+})
+
 
 app.use((req,res)=>{
     res.status(404)
