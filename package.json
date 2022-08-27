@@ -1,0 +1,16 @@
+{
+  "name": "hola-express",
+  "version": "1.0.0",
+  "description": "Primer proyecto con express",
+  "main": "index.js",
+  "type" : "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Erick Guerrero",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6"
+  }
+}
